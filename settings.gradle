@@ -1,0 +1,3 @@
+rootProject.name = 'ice-multimedia-chat'
+
+include 'common', 'server', 'client'
