@@ -12,16 +12,16 @@ module ChatApp
     exception ChatException
     {
         string reason;
-    }
+    };
 
-    exception NotLoggedIn extends ChatException {}
-    exception NicknameInUse extends ChatException {}
-    exception UserNotFound extends ChatException {}
-    exception RoomNotFound extends ChatException {}
-    exception RoomAlreadyExists extends ChatException {}
-    exception NotInRoom extends ChatException {}
-    exception CallNotFound extends ChatException {}
-    exception TransferNotFound extends ChatException {}
+    exception NotLoggedIn extends ChatException {};
+    exception NicknameInUse extends ChatException {};
+    exception UserNotFound extends ChatException {};
+    exception RoomNotFound extends ChatException {};
+    exception RoomAlreadyExists extends ChatException {};
+    exception NotInRoom extends ChatException {};
+    exception CallNotFound extends ChatException {};
+    exception TransferNotFound extends ChatException {};
 
     struct Message
     {
@@ -30,7 +30,7 @@ module ChatApp
         string room;
         string text;
         long timestamp;
-    }
+    };
 
     struct FileInfo
     {
@@ -42,7 +42,7 @@ module ChatApp
         long size;
         int totalChunks;
         string sha256;
-    }
+    };
 
     struct CallInfo
     {
@@ -50,7 +50,7 @@ module ChatApp
         string caller;
         string room;
         bool group;
-    }
+    };
 
     struct MediaTicket
     {
@@ -58,7 +58,7 @@ module ChatApp
         int token;
         string relayHost;
         int relayPort;
-    }
+    };
 
     interface ClientCallback
     {
@@ -77,7 +77,7 @@ module ChatApp
         void onCallRejected(int callId, string nickname);
         void onCallLeft(int callId, string nickname);
         void onCallEnded(int callId);
-    }
+    };
 
     interface ChatServer
     {
@@ -103,5 +103,5 @@ module ChatApp
         MediaTicket acceptCall(int callId) throws NotLoggedIn, CallNotFound;
         void rejectCall(int callId) throws NotLoggedIn, CallNotFound;
         void hangup(int callId) throws NotLoggedIn, CallNotFound;
-    }
-}
+    };
+};
