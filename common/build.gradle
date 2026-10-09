@@ -1,0 +1,22 @@
+plugins {
+    id 'java-library'
+    id 'com.zeroc.gradle.ice-builder.slice'
+}
+
+dependencies {
+    api 'com.zeroc:ice:3.7.10'
+}
+
+def slice2javaOnPath = System.getenv('PATH')?.split(File.pathSeparator)
+        ?.collect { new File(it, 'slice2java') }
+        ?.find { it.canExecute() }
+
+if (!System.getenv('ICE_HOME') && slice2javaOnPath) {
+    slice.iceHome = slice2javaOnPath.canonicalFile.parentFile.parentFile.absolutePath
+}
+
+slice {
+    java {
+        files = fileTree(dir: 'src/main/slice', include: '**/*.ice')
+    }
+}

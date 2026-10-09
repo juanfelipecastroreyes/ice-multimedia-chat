@@ -1,0 +1,30 @@
+plugins {
+    id 'com.zeroc.gradle.ice-builder.slice' version '1.5.0' apply false
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.release = 17
+    }
+}
+
+tasks.register('runServer') {
+    group = 'application'
+    description = 'Inicia el servidor del chat'
+    dependsOn ':server:run'
+}
+
+tasks.register('runClient') {
+    group = 'application'
+    description = 'Inicia un cliente del chat'
+    dependsOn ':client:run'
+}
